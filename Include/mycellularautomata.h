@@ -21,7 +21,7 @@ class cellular_automata{
         cellular_automata();    // default constructor
         ~cellular_automata();   // default destructor
         int setup(int height, int width);
-        int setup_states(int num_states, vector<string> states);
+        int setup_states(int num_states, vector<string> states, vector<double> state_probabilities);
         int print_CA_status();
 
     private:
