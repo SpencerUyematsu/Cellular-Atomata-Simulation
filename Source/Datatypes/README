@@ -1,0 +1,14 @@
+University of California, Berkeley
+Chem 274B: Software Engineering Fundamentals for Molecular Sciences
+November 2023
+# 
+Creator:  Team 14
+Date Created: 12/05/2023
+Directory Path: CHEM274B_FINALPROJECT/Source/Datatypes
+LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
+NO Subdirectories
+
+LIST OF FILES IN THIS DIRECTORY:
+README: (this file)
+Makefile: make targets for this directory
+cellular_automata.cpp: c++ implementation of cellula automata class
