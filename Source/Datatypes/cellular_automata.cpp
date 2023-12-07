@@ -78,8 +78,8 @@ int cellular_automata::setup_dimensions(int height, int width) {
     Returns:
         defined error codes.
 */
-int cellular_automata::setup_states(vector<string> states, vector<double> state_probabilities) {
-    if (states.size() != (state_probabilities.size() - 1)){ // states not matched with probabilities
+int cellular_automata::setup_states(int num_states, vector<double> state_probabilities) {
+    if ((num_states -1) != (state_probabilities.size())){ // states not matched with probabilities
         std::cout << "Error 2: Each State Must Have A Probability " << std::endl;
         return ERR_NUM_STATES;
     }
@@ -91,7 +91,7 @@ int cellular_automata::setup_states(vector<string> states, vector<double> state_
     }   
 
     else {
-        num_states_ = states.size(); // set num states
+        num_states_ = num_states; // set num states
         srand(time(NULL));
 
         setup_prob(state_probabilities);
@@ -102,9 +102,9 @@ int cellular_automata::setup_states(vector<string> states, vector<double> state_
                 int random_number = rand() % 100000;
                 double random_prob = static_cast<double>(random_number) / 100000;
                 int k = 0;
-                
+
                 while(random_prob > state_probabilities[k]) k++;
-                cellular_matrix[i][j].type = states[k];
+                cellular_matrix[i][j].type = k;
                 cellular_matrix[i][j].steps_passed = 0;
             }
         }
@@ -146,8 +146,8 @@ int cellular_automata::print_CA_status() {
             for (int j = 0; j < width_; j++) {
                 
                 cell cellij = cellular_matrix[i][j];
-                std::cout << std::endl << "Grid Row: " << i << " Grid Column: " << j 
-                << " Cell Type: " << cellij.type << " Number of Steps Passed: " << cellij.steps_passed << endl;
+                std::cout << std::endl << "Grid Row: " << i << " | Grid Column: " << j 
+                << " | Cell Type: " << cellij.type << " | Number of Steps Passed: " << cellij.steps_passed << endl;
             }
         }
 
