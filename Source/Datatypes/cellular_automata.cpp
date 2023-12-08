@@ -30,6 +30,17 @@ cellular_automata::~cellular_automata(){
 
 }
 
+
+
+const cell ** cellular_matrix() const { // const accessor for cellular matrix class 
+    return cellular_matrix_;
+}
+
+
+
+
+
+
 /*  Function to set up cellula automata structure: 
     (Defines the structure of automata, i.e the height, width, rows and columns)
 
@@ -124,6 +135,9 @@ int cellular_automata::setup_prob(vector<double> &state_probabilities){
     return NO_ERROR;
 }
 
+
+
+
 /*  Function to print cellular automata cell status
     (Iterates through cells and prints each status)
 
@@ -156,6 +170,57 @@ int cellular_automata::print_CA_status() {
 
 }
 
+
+
+
+/*  Function to set up cellula automata neighborhood: 
+
+    Parameters:
+    row: int
+        the row of the center cell
+
+    column: int
+        the column of the center cell
+
+    Returns:
+        defined error codes.
+*/
+int setup_neighborhood(int row, int column, std::string neighborhood_law) {
+
+    neighborhood_law_ = neighborhood_law
+
+    if (neighborhood_law_ == "Moore") { // setup moore neighborhood
+
+        for (int i = row - 1; i < row + 1; i++) { // iterate over rows
+            for (int j = column - 1; j < column + 1; j++) { // iterate over columns
+                if (!(i == row && j == column)){ 
+                    neighbors.push_back(cellular_matrix[i][j]); // include every cell besides center
+
+                }
+            }
+        }
+        
+        return 0; 
+    }
+
+    else if (neighborhood_law_ == "von Neumann") { // set up von neuman
+ 
+        neighbors.push_back(cellular_matrix[row + 1][column]); // include neighbors that 
+        neighbors.push_back(cellular_matrix[row - 1][column]); // are not diagonal
+        neighbors.push_back(cellular_matrix[row][column + 1]);
+        neighbors.push_back(cellular_matrix[row][column - 1]);
+
+        return 0;
+        
+    }
+
+    else {
+
+        return -5
+    }
+
+
+}
 
 
 
