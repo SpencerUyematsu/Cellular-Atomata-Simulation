@@ -8,7 +8,7 @@
 using namespace std;
 
 struct cell{
-    std::string type;
+    int type;
     int steps_passed;
 };
 
@@ -17,7 +17,7 @@ class cellular_automata{
         cellular_automata();    // default constructor
         ~cellular_automata();   // default destructor
         int setup_dimensions(int height, int width);
-        int setup_states(vector<string> states, vector<double> state_probabilities);
+        int setup_states(int num_states, vector<double> state_probabilities);
         int setup_prob(vector<double> &state_probabilities);
         int print_CA_status();
         int setup_neighborhood(int row, int column, std::string neighborhood_law);
@@ -29,6 +29,7 @@ class cellular_automata{
         int num_states_;
         std::string neighborhood_law_;
         std::vector<cell> neighbors_;
+
 };
 
 #define NO_ERROR 0
@@ -42,7 +43,7 @@ class simulate{
     public:
         simulate();
         ~simulate();
-        int setup_simulation();
+        int setup_simulation(cellular_automata &CA);
         int step();
         int print_sim_status();
 
