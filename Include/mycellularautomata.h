@@ -20,14 +20,16 @@ class cellular_automata{
         int setup_states(int num_states, vector<double> state_probabilities);
         int setup_prob(vector<double> &state_probabilities);
         int print_CA_status();
+        int setup_neighborhood(int row, int column, std::string neighborhood_law);
 
     private:
         cell **cellular_matrix;
         int height_;
         int width_;
         int num_states_;
-        std::string neighborhood_law;
-        vector<string> states_;
+        std::string neighborhood_law_;
+        std::vector<cell> neighbors_;
+
 };
 
 #define NO_ERROR 0
@@ -35,6 +37,7 @@ class cellular_automata{
 #define ERR_NUM_STATES -2
 #define ERR_INC_PROBABILITY -3
 #define ERR_NO_SETUP -4
+#define NEIGHBORHOOD_INVALID_TYPE = - 5
 
 class simulate{
     public:
