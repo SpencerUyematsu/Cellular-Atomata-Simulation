@@ -173,6 +173,21 @@ int cellular_automata::print_CA_status() {
 
 
 
+
+int setup_neighborhood(std::string neighborhood_law) {
+    
+    if (neighborhood_law_ != "Moore" && neighborhood_law_ != "von Neumann") {
+        return NEIGHBORHOOD_INVALID_TYPE;
+    }
+    
+    neighborhood_law_ = neighborhood_law;
+
+    return NO_ERROR;
+}
+
+
+
+
 /*  Function to set up cellula automata neighborhood: 
 
     Parameters:
@@ -185,42 +200,55 @@ int cellular_automata::print_CA_status() {
     Returns:
         defined error codes.
 */
-int setup_neighborhood(int row, int column, std::string neighborhood_law) {
+std::vector<cell> cellular_automata::get_neighborhood(int row, int column) {
 
-    neighborhood_law_ = neighborhood_law
+    std::vector<cell> neighborhood;
 
     if (neighborhood_law_ == "Moore") { // setup moore neighborhood
-
+        
         for (int i = row - 1; i < row + 1; i++) { // iterate over rows
             for (int j = column - 1; j < column + 1; j++) { // iterate over columns
-                if (!(i == row && j == column)){ 
-                    neighbors.push_back(cellular_matrix[i][j]); // include every cell besides center
+                //if (!(i == row && j == column)){ 
+                    neighborhood.push_back(cellular_matrix[i][j]); // include every cell besides center
 
-                }
+               // }
             }
         }
         
-        return 0; 
+        return neighborhood; 
     }
 
     else if (neighborhood_law_ == "von Neumann") { // set up von neuman
- 
-        neighbors.push_back(cellular_matrix[row + 1][column]); // include neighbors that 
-        neighbors.push_back(cellular_matrix[row - 1][column]); // are not diagonal
-        neighbors.push_back(cellular_matrix[row][column + 1]);
-        neighbors.push_back(cellular_matrix[row][column - 1]);
+        
+        neighborhood.push_back(cellular_matrix[row][column]);
+        neighborhood.push_back(cellular_matrix[row + 1][column]); // include neighbors that 
+        neighborhood.push_back(cellular_matrix[row - 1][column]); // are not diagonal
+        neighborhood.push_back(cellular_matrix[row][column + 1]);
+        neighborhood.push_back(cellular_matrix[row][column - 1]);
 
-        return 0;
+        return neighborhood;
         
     }
 
-    else {
-
-        return -5
-    }
+    else:
+        return neighborhood;
 
 
 }
+
+
+
+cell cellular_automata::get_cell(int row, int col) {
+    
+    return cellular_matrix[row][column]; // return cell at cellular matrix index < -- need to throw error if 
+                                            // accesed out of bounds 
+}
+
+
+
+
+
+
 
 
 
