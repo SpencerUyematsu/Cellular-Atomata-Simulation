@@ -22,7 +22,13 @@ class cellular_automata{
         int print_CA_status();
         int setup_neighborhood(std::string neighborhood_law);
         std::vector<cell> get_neighborhood(int row, int column);
+        std::vector<cell> get_neighborhood(int column);
+
         cell get_cell(int row, int col);
+        const cell ** cellular_automata::get_cellular_matrix() const;
+
+        int setup_boundary(std::string boundary);
+        int setup_fixed_boundary(int type);
 
     private:
         cell **cellular_matrix;
@@ -31,6 +37,10 @@ class cellular_automata{
         int num_states_;
         std::string neighborhood_law_;
         std::vector<cell> neighborhood_;
+
+        std::string boundary_;
+        int boundary_cell_;
+        int boundary_type;
 
 };
 
