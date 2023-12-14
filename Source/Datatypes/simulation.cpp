@@ -8,7 +8,7 @@ int simulate::setup_simulation(cellular_automata &CA);
 
 
 
-int stimulate::straight_conditional_transition_rule(int row, int column, int initial_type, int final_type, int num_steps) {
+int stimulate::straight_conditional_transition_rule(int row, int column, int initial_type, int final_type, int num_steps) const {
     
     if (CA.get_cell(row, column).type == initial_type && CA.get_cell(row, column).steps_passed >= num_steps) {
         
@@ -20,7 +20,7 @@ int stimulate::straight_conditional_transition_rule(int row, int column, int ini
 }
 
 
-int simulate::conditional_transition_rule_on_neighbor(int row, int column, int initial_type, int neighbor_type) {
+int simulate::conditional_transition_rule_on_neighbor(int row, int column, int initial_type, int neighbor_type) const {
 
     if (CA.get_cell(row, column).type != intial_type) {
     
@@ -50,4 +50,28 @@ int simulate::conditional_transition_rule_on_neighbor(int row, int column, int i
 
 
 
+
+int simulate::majority_rule(int row, int column) const { // type only depends on average
+// of neighbor types
+
+
+    std::vector<cell> neighbors = CA.get_neighborhood(row, column); // get neighbors of cell
+
+
+    double sum = 0; // store sum of types
+
+    for (size_t i = 0; i < neighbors.size(); i++) {
+        
+       sum += nieghbors[i].type;
+   
+    }
+
+    CA.get_cell(row, column).type = round(sum/neighbors.size()) // set type to majority 
+    // type of neighbor cells
+
+
+    return NO_ERROR;
+
+
+}
 
