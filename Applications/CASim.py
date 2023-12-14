@@ -28,7 +28,7 @@ fig, ax = plt.subplots()
 
 # show plot for every step
 def step(timestep):
-    ax.imshow(state[timestep], aspect="auto", cmap ="magma", interpolation="spline16") # can change interpolation (none for block like)
+    ax.imshow(state[timestep], aspect="auto", cmap ="magma", interpolation="none") # can change interpolation (none for block like)
 
 # creates animation over all timesteps
 Cellular_Automata = mani.FuncAnimation(fig, step, frames=total_timestep, repeat=False, interval = 200)
