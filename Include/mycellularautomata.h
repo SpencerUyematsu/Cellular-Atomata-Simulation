@@ -1,7 +1,9 @@
 // Chem 274B: Software Engineering Fundamentals for
 //            Molecular Sciences  
 // Creator: Group 14
-// Date Created: 11/30/2021
+// Date Created: 12/05/2023
+// 
+// 
 
 #include <string>
 #include <vector>
@@ -73,17 +75,21 @@ class rule{
         int setup_straight_conditional(int initial_type, int final_type, int num_steps);
         int setup_conditional_transition(int initial_type, int neighbor_type);
         int setup_majority(int initial_type, int neighbor_type, int num_states);
+        int setup_probabilistic(int initial_state, int final_type_1, int final_type_2, int num_steps, double probability);
         int apply(cell starting_cell, std::vector<cell> neighbors);
         int straight_conditional_rule(cell starting_cell);
         int conditional_transition_rule(cell starting_cell, std::vector<cell> neighbors);
         int majority_rule(cell starting_cell, std::vector<cell> neighbors);
+        int probability_rule(cell starting_cell);
     
     private:
         std::string rule_type_;
         int initial_type_;
         int transition_type_;
+        int transition_type_2_;
         int num_steps_;
         int num_states_;
+        double probability_;
 };
 
 #define ERR_NO_RULE_SETUP -7
@@ -93,7 +99,7 @@ class simulate{
         simulate();
         ~simulate();
         int setup_simulation(cellular_automata &CA, int total_steps, int steps_per_output, std::string filename, std::string filename2);
-        int step();
+        const cellular_automata& step();
         int run();
         int add_rule(rule new_rule);
 

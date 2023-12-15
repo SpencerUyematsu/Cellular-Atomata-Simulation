@@ -11,8 +11,7 @@
 //               
 
 #include "mycellularautomata.h"
-
-
+#include "myrandom.h"
 
 //                                          CONSTRUCTORS
 // --------------------------------------------------------------------------------------------------
@@ -78,7 +77,7 @@ void cellular_automata::operator=(const cellular_automata& other)
 
     Parameters:
     height: int
-        the height of cellular automata
+        the height of cellular automata. For 1D CA's, this should be set to 1.
 
     width: int
         the width of the cellular automata
@@ -143,7 +142,7 @@ int cellular_automata::setup_dimensions(int height, int width) {
     }
 }
 
-/*  Function to set up cellula automata states: 
+/*  Function to set up cellular automata states: 
     (Iterates thorugh cells in cellula automata, and assigns each cell within the cellular_matrix 
     with a state based on state_probability)
 
@@ -177,9 +176,7 @@ int cellular_automata::setup_states(int num_states, vector<double> state_probabi
         
         for (int i = 0; i < height_; i++) { // iterating over grid rows
             for (int j = 0; j < width_; j++) { // iterating over grid colums
-                // UPDATE WITH RANDOM GENERATOR TO SET STATES
-                int random_number = rand() % 100000;
-                double random_prob = static_cast<double>(random_number) / 100000;
+                double random_prob = rand_number();
                 int k = 0;
 
                 while(random_prob > state_probabilities[k]) k++;
@@ -213,7 +210,7 @@ int cellular_automata::setup_fixed_boundary(int type){
     return NO_ERROR;
 }
 
-/*  Function to set up cellula automata neighborhood: 
+/*  Function to set up cellular automata neighborhood: 
 
     Parameters:
     row: int
@@ -232,11 +229,8 @@ int cellular_automata::setup_neighborhood(std::string neighborhood_law) {
 
 //                                             GETTER METHODS
 // -------------------------------------------------------------------------------------------------------
-/*
-const cell ** cellular_automata::get_cellular_matrix() const { // const accessor for cellular matrix class 
-    return cellular_matrix;
-}
-*/
+
+
 std::vector<cell> cellular_automata::get_neighborhood(int row, int column) {
     std::vector<cell> neighbors;
     cell boundary_cell;
@@ -276,7 +270,7 @@ std::vector<cell> cellular_automata::get_neighborhood(int row, int column) {
             right = cellular_matrix[row][(column + 1) % width_];
             top = cellular_matrix[(row - 1) % height_][column];
             bottom = cellular_matrix[((row + 1) + height_) % height_][column];
-        } else {
+        } else if((boundary_ == "none") || (boundary_ == "fixed")){
             if(row == 0){
                 top = boundary_cell;
             } else top = cellular_matrix[row - 1][column];
@@ -306,14 +300,38 @@ std::vector<cell> cellular_automata::get_neighborhood(int row, int column) {
     return neighbors;
 }
 
+/* Note **This is the get neighborhood method for 1D CA's
+
+
+*/
 std::vector<cell> cellular_automata::get_neighborhood(int column) {
     std::vector<cell> neighbors;
+    cell boundary_cell;
+
+    if(boundary_ == "none"){
+        boundary_cell.type = INT_MAX;
+    } else if (boundary_ == "fixed"){
+        boundary_cell.type = boundary_type;
+    }
 
     if(height_ == 1){
-        neighbors.push_back(cellular_matrix[0][column - 1]);
-        neighbors.push_back(cellular_matrix[0][column]);
-        neighbors.push_back(cellular_matrix[0][column + 1]);
-    }
+        if(boundary_ == "periodic"){
+            neighbors.push_back(cellular_matrix[0][((column - 1) + width_) % width_]);
+            neighbors.push_back(cellular_matrix[0][column]);
+            neighbors.push_back(cellular_matrix[0][(column + 1) % width_]);
+        } else if((boundary_ == "none") || (boundary_ == "fixed")){
+            neighbors.push_back(cellular_matrix[0][column]);
+            if(column == 0){
+                neighbors.push_back(boundary_cell);
+            } else neighbors.push_back(cellular_matrix[0][column - 1]);
+
+            if(column == (width_ - 1)){
+                neighbors.push_back(boundary_cell);
+            } else neighbors.push_back(cellular_matrix[0][column + 1]);
+        } else{
+            cout << "ERROR: Please setup neighborhood rule before getting neighborhood." << std::endl;
+        }
+    } else cout << "ERROR: For 2D arrays, please input row and column value" << std::endl;
     return neighbors;
 }
 

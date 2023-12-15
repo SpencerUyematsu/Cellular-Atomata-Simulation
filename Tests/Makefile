@@ -44,7 +44,8 @@ test_all: $(INC_DIR)/mycellularautomata.h
 
 sim: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) test_simulation test_simulation.cpp \
-	-I$(INC_DIR) -L$(LIB_DIR) -lmycellularautomata
+	-I$(INC_DIR) -I$(UINC_DIR) -L$(LIB_DIR) -lmycellularautomata \
+	-L$(ULIB_DIR) -lmyrandom
 	./test_simulation
 	rm test_simulation
 

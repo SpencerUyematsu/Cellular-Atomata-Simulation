@@ -26,7 +26,7 @@ int simulate::add_rule(rule new_rule) {
     return NO_ERROR;
 }
 
-int simulate::step(){
+const cellular_automata& simulate::step(){
     int new_type;
     std::vector<cell> neighbors;
     CA2 = CA1;
@@ -51,7 +51,7 @@ int simulate::step(){
     CA1 = CA2;
 
     step_number += 1;
-    return NO_ERROR;
+    return CA1;
 }
 
 int simulate::run(){

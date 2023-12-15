@@ -20,6 +20,10 @@ INC_DIR     = ../../Include
 # The directory where all object files are going to moved afer creation
 LIB_DIR     = ../../Lib
 
+UTIL_DIR = ../../Utils/Include
+
+ULIB_DIR = ../../Utils/Lib
+
 # DATA_OBJS contains the current list of object files created after
 # compiling the C++ source files that declare and implement OO classes
 DATA_OBJS   = cellular_automata.o simulation.o rules.o
@@ -32,10 +36,12 @@ DATA_LIB = libmycellularautomata.a
 # linkable object files).
 # use files to to build a library object file instead of moving to LIB_DIR.
 cellular_automata.o: $(INC_DIR)/mycellularautomata.h
-	$(CPP) $(CPPFLAGS) cellular_automata.cpp -I$(INC_DIR)
+	$(CPP) $(CPPFLAGS) cellular_automata.cpp -I$(INC_DIR) -I$(UTIL_DIR) \
+	-L$(ULIB_DIR) -lmyrandom
 
 rules.o: $(INC_DIR)/mycellularautomata.h
-	$(CPP) $(CPPFLAGS) rules.cpp -I$(INC_DIR)
+	$(CPP) $(CPPFLAGS) rules.cpp -I$(INC_DIR) -I$(UTIL_DIR) \
+	-L$(ULIB_DIR) -lmyrandom
 
 simulation.o: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) simulation.cpp -I$(INC_DIR)
