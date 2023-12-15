@@ -1,0 +1,30 @@
+# University of California, Berkeley
+# Chem 274B: Software Engineering Fundamentals for
+#            Molecular Sciences 
+# December 2023
+
+# 
+# Creator:  Group 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
+# Date Created: December 15 2023
+# Directory Path: CHEM274B_FinalProject/Utils/Metrics
+
+
+
+LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
+
+LIST OF FILES IN THIS DIRECTORY:
+- README (this file)
+- Makefile: generates object files from source C++ program files in this
+         subdirectory and then it archives them in a library 
+         (mymetrics.a)
+- mychrontimes.cpp  Implements three functions that help us time
+                    executing programs using the C system 
+                    chrono library. 
+
+
+#	- Students need to also place their Answers-Assignment4.pdf 
+#	  file in this directory
+
+# Updates:
+- <student's name> report any updates to this directory 
+- 11/30/2023: created this file (README) and added mychrontimes.cpp

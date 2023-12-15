@@ -1,0 +1,27 @@
+# University of California, Berkeley
+# Chem 274B: Software Engineering Fundamentals for
+#            Molecular Sciences 
+# December 2023
+
+# 
+# Creator:  Group 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
+# Date Created: December 15, 2023
+# Directory Path: CHEM274B_FINALPROJECT/Source
+
+This is the main directory for Assigment #4 Graph algorithms
+and optional matrix-matrix multiplication.
+
+LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
+- Datatypes/
+
+LIST OF FILES IN THIS DIRECTORY:
+- README (this file see datatypes subdirectory for cellular automata source files)
+
+
+
+
+# Updates:
+- <student's name> report any updates to this directory 
+- 11/20/2023: created this file (README)
+- 12/02/2023: all files added in subdirectories
+	

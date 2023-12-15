@@ -5,7 +5,7 @@
 # 
 # Creator:  Group 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
 # Date Created: December, 2023
-# Directory Path: CHEM274B_FINALPROJECT/Include
+# Directory Path: CHEM274B_FINALPROJECT/Applications
 
 All executable object files are in this directory 
 
@@ -14,3 +14,6 @@ LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
 
 LIST OF FILES IN THIS DIRECTORY:
 - README:(this file) 
+- CASim.ipynb: jupyter notebook for cellular automata simulation output
+- CASim.py: python script that will output animation of cellular automata simulation
+- test_output.csv: output data for simulation
