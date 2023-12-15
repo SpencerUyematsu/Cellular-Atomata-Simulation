@@ -48,5 +48,12 @@ sim: $(INC_DIR)/mycellularautomata.h
 	./test_simulation
 	rm test_simulation
 
+test_timed_sim: $(INC_DIR)/mycellularautomata.h
+	$(CPP) $(CPPFLAGS) test_timed_simulation test_timed_simulation.cpp \
+	-I$(INC_DIR) -L$(LIB_DIR) -lmycellularautomata \
+	-I$(UINC_DIR) -L$(ULIB_DIR) -lmymetrics
+	./test_timed_simulation
+	rm test_timed_simulation
+
 CA:
 	cd ../Source/Datatypes; make all
