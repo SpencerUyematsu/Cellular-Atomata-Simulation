@@ -22,7 +22,6 @@ int simulate::setup_simulation(cellular_automata &CA, int total_steps, int steps
 
 int simulate::add_rule(rule new_rule) {
     rules.push_back(new_rule);
-    std::cout << "Size of rules" << rules.size() << std::endl;
     return NO_ERROR;
 }
 
@@ -76,7 +75,6 @@ int simulate::run(){
     filestream2 << endl;
 
     // Print initial state
-    CA1.print_CA_status();
     for(int k = 0; k < height_; k++){
         for(int j = 0; j < width_; j++){
             filestream << CA1(k,j).type << ",";
@@ -92,7 +90,6 @@ int simulate::run(){
 
     for(int s = 0; s < total_steps_; s++){
         step();
-        CA1.print_CA_status();
         for(int k = 0; k < height_; k++){
             for(int j = 0; j < width_; j++){
                 filestream << CA1(k,j).type << ",";

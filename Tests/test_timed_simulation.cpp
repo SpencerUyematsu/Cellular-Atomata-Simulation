@@ -10,6 +10,7 @@ int main(){
     vector<int> sgrid_sizes = {5, 10, 50, 100, 500, 1000}; // square grid
     double elapsed_t;
 
+    file1 << "size,time" << std::endl;
     for (int i = 0; i < sgrid_sizes.size(); i++) {
 
         
@@ -17,7 +18,7 @@ int main(){
 
         cellular_automata CA;
         vector<string> states = {"healthy", "infected", "dead"};
-        vector<double> prob = {0.9, 0.1};
+        vector<double> prob = {0.9, 0.05};
         vector<cell> neighborhood;
 
 
@@ -48,12 +49,12 @@ int main(){
         auto tend = WTimeChrono(); //stop timing
         elapsed_t = WTElapsedMicro(tstart, tend);
 
-        file1 << "Grid size: " << sgrid_sizes[i] << ", Elapsed time:" << elapsed_t << std::endl;
+        file1 << sgrid_sizes[i] << "," << elapsed_t << std::endl;
         
     }
     
     
-    file1.close()
+    file1.close();
     
     
     
