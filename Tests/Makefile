@@ -30,7 +30,7 @@ BIN_DIR     = ../Bin
 
 # The next line contains a list of executable object files 
 # created by this Makefile.
-SORT_EXECUTABLES =
+EXECUTABLES = test_setup test_boundaries 
 
 test_setup: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) test_setup test_setup.cpp \
@@ -66,3 +66,8 @@ test_timed_sim: $(INC_DIR)/mycellularautomata.h
 
 CA:
 	cd ../Source/Datatypes; make all
+
+all: $(EXECUTABLES)
+
+cleanall: 
+	cd $(BIN_DIR); rm $(EXECUTABLES)
