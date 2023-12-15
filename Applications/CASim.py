@@ -1,8 +1,8 @@
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import matplotlib.animation as mani
+import seaborn as sns
 
 
 state = pd.read_csv("test_output.csv")
@@ -17,7 +17,7 @@ fig, ax = plt.subplots()
 
 # show plot for every step
 def step(timestep):
-    ax.imshow(state[timestep], aspect="auto", cmap ="magma", interpolation="none") # can change interpolation (none for block like)
+    sns.heatmap(state[timestep], cbar=None)
 
 # creates animation over all timesteps
 Cellular_Automata = mani.FuncAnimation(fig, step, frames= state.shape[0], repeat=True, interval = 1000)
