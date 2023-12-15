@@ -26,10 +26,12 @@ class cellular_automata{
         ~cellular_automata();   // default destructor
         void operator=(const cellular_automata& other);
         cell& operator()(int row, int col);
+        cell& operator()(int col);
 
         int setup(int height, int width, int num_states, vector<double> state_probabilities, 
                   std::string neighborhood_law, std::string boundary);
         int setup_dimensions(int height, int width);
+        int setup_dimensions(int width);
         int setup_states(int num_states, vector<double> state_probabilities);
         int setup_prob(vector<double> &state_probabilities);
         int setup_boundary(std::string boundary);
@@ -67,6 +69,7 @@ class cellular_automata{
 #define ERR_NO_SETUP -4
 #define NEIGHBORHOOD_INVALID_TYPE = - 5
 #define ERR_NEIGHBORHOOD_NOT_SET = -6
+#define ERR_INVALID_DIMENSIONS -7
 
 class rule{
     public:

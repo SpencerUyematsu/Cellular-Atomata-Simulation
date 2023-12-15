@@ -127,10 +127,30 @@ int cellular_automata::setup_dimensions(int height, int width) {
         std::cout << "Error 1: Cellular Automata Class Already Setup " << std::endl; 
 
         return ERR_ALREADY_SETUP; 
-    }
-
-    else {
+    } else if ((width <= 0) || (height <= 0)){
+        return ERR_INVALID_DIMENSIONS;
+    } else {
         height_ = height; // set height 
+        width_ = width; // set width
+
+        cellular_matrix = new (nothrow) cell * [height_]; // setup matrix rows
+        for (int i = 0; i < height_; i++) {
+            cellular_matrix[i] = new (nothrow) cell[width_]; // setup matrix columns
+        }
+
+        return NO_ERROR;
+    }
+}
+
+int cellular_automata::setup_dimensions(int width) {
+
+    if (cellular_matrix != nullptr) { // already setup
+        std::cout << "Error 1: Cellular Automata Class Already Setup " << std::endl;
+        return ERR_ALREADY_SETUP; 
+    } else if (width <= 0){
+        return ERR_INVALID_DIMENSIONS;
+    } else {
+        height_ = 1; // set height 
         width_ = width; // set width
 
         cellular_matrix = new (nothrow) cell * [height_]; // setup matrix rows
@@ -360,6 +380,11 @@ int cellular_automata::get_width() const {
 
 cell& cellular_automata::operator()(int row, int col){
     return cellular_matrix[row][col];
+}
+
+cell& cellular_automata::operator()(int col){
+    if(height_ == 1) cout << "This operator is designed to be used on 1D cellular automata." << endl;
+    return cellular_matrix[0][col];
 }
 
 /*  Function to print cellular automata cell status
