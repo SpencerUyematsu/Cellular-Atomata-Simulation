@@ -42,5 +42,11 @@ test_all: $(INC_DIR)/mycellularautomata.h
 	./test_all
 	rm test_all
 
+sim: $(INC_DIR)/mycellularautomata.h
+	$(CPP) $(CPPFLAGS) test_simulation test_simulation.cpp \
+	-I$(INC_DIR) -L$(LIB_DIR) -lmycellularautomata
+	./test_simulation
+	rm test_simulation
+
 CA:
 	cd ../Source/Datatypes; make all

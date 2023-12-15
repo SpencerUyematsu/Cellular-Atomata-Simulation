@@ -34,9 +34,17 @@ cellular_automata::~cellular_automata(){
 }
 
 void cellular_automata::operator=(const cellular_automata& other){
-    cellular_matrix = other.cellular_matrix;
     height_ = other.height_;
     width_ = other.width_;
+    cellular_matrix = new (nothrow) cell * [height_];
+
+    for (int i = 0; i < height_; i++) {
+        cellular_matrix[i] = new (nothrow) cell[width_]; // setup matrix columns
+        for (int j = 0; j < width_; j++){
+            cellular_matrix[i][j] = other.cellular_matrix[i][j];
+        }
+    }
+
     num_states_ = other.num_states_;
 
     neighborhood_law_ = other.neighborhood_law_;
@@ -268,6 +276,14 @@ std::vector<cell> cellular_automata::get_neighborhood(int column) {
 
 int cellular_automata::get_num_states(){
     return num_states_;
+}
+
+int cellular_automata::get_height() const {
+    return height_;
+}
+
+int cellular_automata::get_width() const {
+    return width_;
 }
 
 cell& cellular_automata::operator()(int row, int col){

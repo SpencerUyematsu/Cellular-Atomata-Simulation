@@ -6,7 +6,7 @@ rule::rule(){};
 
 rule::~rule(){};
 
-int rule::setup_straight_conditional(std::string rule, int initial_type, int final_type, int num_steps){
+int rule::setup_straight_conditional(int initial_type, int final_type, int num_steps){
     rule_type_ = "straight conditional";
     num_steps_ = num_steps;
     initial_type_ = initial_type;
@@ -42,7 +42,7 @@ int rule::apply(cell starting_cell, std::vector<cell> neighbors){
 }
 
 int rule::straight_conditional_rule(cell starting_cell){
-    if(starting_cell.type == initial_type_ && starting_cell.steps_passed >= num_steps_){
+    if((starting_cell.type == initial_type_) && (starting_cell.steps_passed >= num_steps_)){
         return transition_type_;
     } else {
         return starting_cell.type;
@@ -71,7 +71,7 @@ int rule::majority_rule(cell starting_cell, std::vector<cell> neighbors){
             if(type_count[neighbors[i].type] > max_count){
                 max_type = neighbors[i].type;
             } else if(type_count[neighbors[i].type] == max_count) {
-                max_type == starting_cell.type;
+                max_type = starting_cell.type;
             }
         }
     }

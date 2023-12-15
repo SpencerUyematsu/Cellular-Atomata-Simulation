@@ -32,8 +32,9 @@ class cellular_automata{
         std::vector<cell> get_neighborhood(int row, int column);
         std::vector<cell> get_neighborhood(int column);
         cell get_cell(int row, int col);
-        // const cell ** cellular_automata::get_cellular_matrix() const;
         int get_num_states();
+        int get_height() const;
+        int get_width() const;
 
         int print_CA_status();
 
@@ -62,7 +63,7 @@ class rule{
     public:
         rule();
         ~rule();
-        int setup_straight_conditional(std::string rule, int initial_type, int final_type, int num_steps);
+        int setup_straight_conditional(int initial_type, int final_type, int num_steps);
         int setup_conditional_transition(int initial_type, int neighbor_type);
         int setup_majority(int initial_type, int neighbor_type, int num_states);
         int apply(cell starting_cell, std::vector<cell> neighbors);
@@ -84,9 +85,9 @@ class simulate{
     public:
         simulate();
         ~simulate();
-        int setup_simulation(cellular_automata &CA);
+        int setup_simulation(cellular_automata &CA, int total_steps, int steps_per_output, std::string filename);
         int step();
-        int print_sim_status();
+        int run();
         int add_rule(rule new_rule);
 
     private:
@@ -96,4 +97,7 @@ class simulate{
         vector<rule> rules;
         int height_;
         int width_;
+        int total_steps_;
+        int steps_per_output;
+        std::string filename_;
 };
