@@ -17,7 +17,7 @@ LIB_DIR     = ../../Lib
 
 # DATA_OBJS contains the current list of object files created after
 # compiling the C++ source files that declare and implement OO classes
-DATA_OBJS   = cellular_automata.o simulate.o
+DATA_OBJS   = cellular_automata.o simulation.o rules.o
 
 # DATA_LIB is the name of object library file that will contain all
 # DATA_OBJS files
@@ -29,8 +29,11 @@ DATA_LIB = libmycellularautomata.a
 cellular_automata.o: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) cellular_automata.cpp -I$(INC_DIR)
 
-simulate.o: $(INC_DIR)/mycellularautomata.h
-	$(CPP) $(CPPFLAGS) simulate.cpp -I$(INC_DIR)
+rules.o: $(INC_DIR)/mycellularautomata.h
+	$(CPP) $(CPPFLAGS) rules.cpp -I$(INC_DIR)
+
+simulation.o: $(INC_DIR)/mycellularautomata.h
+	$(CPP) $(CPPFLAGS) simulation.cpp -I$(INC_DIR)
 
 # We use the Linux command 'ar' to create the library by archiving previously created object files
 # (here we are archiving in the library all the DATA_OBJS listed
