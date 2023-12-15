@@ -34,7 +34,15 @@ SORT_EXECUTABLES =
 
 test_setup: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) test_setup test_setup.cpp \
-	-I$(INC_DIR) -L$(LIB_DIR) -lmycellularautomata
+	-I$(INC_DIR) -I$(UINC_DIR) -L$(LIB_DIR) -lmycellularautomata \
+	-L$(ULIB_DIR) -lmyrandom
+	mv test_setup $(BIN_DIR)
+
+test_boundaries: $(INC_DIR)/mycellularautomata.h
+	$(CPP) $(CPPFLAGS) test_boundaries test_boundaries.cpp \
+	-I$(INC_DIR) -I$(UINC_DIR) -L$(LIB_DIR) -lmycellularautomata \
+	-L$(ULIB_DIR) -lmyrandom
+	mv test_boundaries $(BIN_DIR)
 
 test_all: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) test_all test_all.cpp \

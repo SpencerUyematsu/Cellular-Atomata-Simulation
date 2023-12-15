@@ -7,7 +7,7 @@ int main(){
     vector<double> prob = {0.9, 0.1};
     vector<cell> neighborhood;
 
-    CA.setup_dimensions(20, 20);
+    CA.setup_dimensions(50, 60);
     CA.setup_states(3, prob);
     CA.setup_boundary("periodic");
     CA.setup_fixed_boundary(20);
