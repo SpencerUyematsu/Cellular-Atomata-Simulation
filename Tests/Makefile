@@ -60,7 +60,7 @@ sim: $(INC_DIR)/mycellularautomata.h
 test_timed_sim: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) test_timed_simulation test_timed_simulation.cpp \
 	-I$(INC_DIR) -L$(LIB_DIR) -lmycellularautomata \
-	-I$(UINC_DIR) -L$(ULIB_DIR) -lmymetrics
+	-I$(UINC_DIR) -L$(ULIB_DIR) -lmyrandom -lmymetrics
 	./test_timed_simulation
 	rm test_timed_simulation
 
