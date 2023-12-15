@@ -44,6 +44,12 @@ test_boundaries: $(INC_DIR)/mycellularautomata.h
 	-L$(ULIB_DIR) -lmyrandom
 	mv test_boundaries $(BIN_DIR)
 
+test_rules: $(INC_DIR)/mycellularautomata.h
+	$(CPP) $(CPPFLAGS) test_rules test_rules.cpp \
+	-I$(INC_DIR) -I$(UINC_DIR) -L$(LIB_DIR) -lmycellularautomata \
+	-L$(ULIB_DIR) -lmyrandom
+# mv test_rules $(BIN_DIR)
+
 test_all: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) test_all test_all.cpp \
 	-I$(INC_DIR) -L$(LIB_DIR) -lmycellularautomata
