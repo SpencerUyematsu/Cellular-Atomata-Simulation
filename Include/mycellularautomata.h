@@ -5,6 +5,12 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <climits>
+#include <limits.h>
+#include <stdexcept>
+#pragma once    // This ensures this file is included only once during
+                // compilation
 using namespace std;
 
 struct cell{
@@ -27,6 +33,7 @@ class cellular_automata{
         int setup_boundary(std::string boundary);
         int setup_neighborhood(std::string neighborhood_law);
         int setup_fixed_boundary(int type);
+        std::vector<int> get_state_count() const;
 
         
         std::vector<cell> get_neighborhood(int row, int column);
@@ -85,7 +92,7 @@ class simulate{
     public:
         simulate();
         ~simulate();
-        int setup_simulation(cellular_automata &CA, int total_steps, int steps_per_output, std::string filename);
+        int setup_simulation(cellular_automata &CA, int total_steps, int steps_per_output, std::string filename, std::string filename2);
         int step();
         int run();
         int add_rule(rule new_rule);
@@ -100,4 +107,5 @@ class simulate{
         int total_steps_;
         int steps_per_output;
         std::string filename_;
+        std::string filename_2_;
 };

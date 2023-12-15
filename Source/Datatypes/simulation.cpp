@@ -8,10 +8,11 @@ simulate::simulate(){};
 
 simulate::~simulate(){};
 
-int simulate::setup_simulation(cellular_automata &CA, int total_steps, int steps_per_output, std::string filename){
+int simulate::setup_simulation(cellular_automata &CA, int total_steps, int steps_per_output, std::string filename, std::string filename2){
     CA1 = CA;
     step_number = 0;
     filename_ = filename;
+    filename_2_ = filename2;
     width_ = CA.get_width();
     height_ = CA.get_height();
     total_steps_ = total_steps;
@@ -56,35 +57,57 @@ int simulate::step(){
 int simulate::run(){
     ofstream filestream;
     filestream.open(filename_);
+    ofstream filestream2;
+    filestream2.open(filename_2_);
 
-    for(int i = 0; i < width_; i++){
+
+    for (int i = 0; i < width_; i++){
         filestream << i << ",";
     }
-    filestream << "width,height";
-    filestream << std::endl;
+    filestream2 << "timestep,width,height";
+    
+   
+    for (int i = 0; i < CA1.get_state_count().size(); i++) {
+        filestream2 << ",count_for_type_" << i;
+    }
+
+
+    filestream << endl;
+    filestream2 << endl;
+
     // Print initial state
     CA1.print_CA_status();
     for(int k = 0; k < height_; k++){
         for(int j = 0; j < width_; j++){
             filestream << CA1(k,j).type << ",";
         }
-        filestream << width_ << "," << height_;
-        filestream << std::endl;
+        filestream << endl;
     }
+    filestream2 << step_number << "," << width_ << "," << height_ << ",";
+    for (int i = 0; i <  CA1.get_state_count().size(); i++) {
+        filestream2 << CA1.get_state_count()[i] << ",";
+    }
+    filestream2 << endl; 
+
 
     for(int s = 0; s < total_steps_; s++){
         step();
         CA1.print_CA_status();
-
         for(int k = 0; k < height_; k++){
             for(int j = 0; j < width_; j++){
                 filestream << CA1(k,j).type << ",";
             }
-            filestream << width_ << "," << height_;
-            filestream << std::endl;
+            filestream << endl;        
         }
+
+        filestream2 << step_number << "," << width_ << "," << height_;
+        for (int i = 0; i <  CA1.get_state_count().size(); i++){
+            filestream2 << "," << CA1.get_state_count()[i];
+        }
+        filestream2 << endl; 
     }
 
     filestream.close();
+    filestream2.close();
     return 0;
 }

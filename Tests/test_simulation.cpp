@@ -26,7 +26,7 @@ int main(){
     simulation.add_rule(rule1);
     simulation.add_rule(rule2);
     std::cout << "1" << std::endl;
-    simulation.setup_simulation(CA, 50, 1, "test_output.csv");
+    simulation.setup_simulation(CA, 50, 1, "test_output.csv", "test_output2.csv");
     std::cout << "2" << std::endl;
     simulation.run();
 }
