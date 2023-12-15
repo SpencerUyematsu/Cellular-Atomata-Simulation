@@ -29,21 +29,26 @@ int simulate::step(){
     int new_type;
     std::vector<cell> neighbors;
     CA2 = CA1;
+
     for(int i = 0; i < height_; i++){
         for(int j = 0; j < width_; j++){
             neighbors = CA1.get_neighborhood(i, j);
+
             for(size_t k = 0; k < rules.size(); k++){
                 new_type = rules[k].apply(CA1(i, j), neighbors);
+
                 if(new_type != CA1(i, j).type){
-                    CA2(i, j).type = rules[k].apply(CA1(i, j), neighbors);
+                    CA2(i, j).type = new_type;
                 }
             }
             if(CA2(i, j).type != CA1(i, j).type){
                 CA2(i, j).steps_passed = 0;
             } else CA2(i, j).steps_passed += 1;
+
         }
     }
     CA1 = CA2;
+
     step_number += 1;
     return NO_ERROR;
 }
@@ -70,6 +75,7 @@ int simulate::run(){
     for(int s = 0; s < total_steps_; s++){
         step();
         CA1.print_CA_status();
+
         for(int k = 0; k < height_; k++){
             for(int j = 0; j < width_; j++){
                 filestream << CA1(k,j).type << ",";
