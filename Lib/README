@@ -1,16 +1,19 @@
+# University of California, Berkeley
 # Chem 274B: Software Engineering Fundamentals for
 #            Molecular Sciences 
-# University of California, Berkeley
 # December 2023
+
 # 
 # Creator:  Group 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
 # Date Created: December, 2023
-# Directory Path: CHEM274B_FINALPROJECT/Include
-
-All executable object files are in this directory 
+# Directory Path: CHEM274B_FINALPROJECT/Lib
+ 
+For Chem 274B Final Project, contains a library of cellular automata simulation methods
 
 LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
 (no subdirectories)
 
 LIST OF FILES IN THIS DIRECTORY:
-- README:(this file) 
+- This README file
+- libmycellularautomata.a
+

@@ -4,7 +4,7 @@
 #
 # Creator: Group 14
 
-# Directory Path: Week9/Source/Sort
+# Directory Path: CHEM274B_FINALPROJECT/Source/Sort
 # This creates executables for tests of sorting functions. 
 
 # GNU C++ Compiler
@@ -13,13 +13,13 @@ CPP         = g++
 # compiler flags -O3 optimized version -c create a library object
 CPPFLAGS    = -std=c++11 -O3 -o
 
-# The directory where Week 9's main library include files are stored.
+# The directory where Final Project main library include files are stored.
 INC_DIR = ../Include
 
 # The directory where the include files for utilities are stored
 UINC_DIR = ../Utils/Include
 
-# The directory where Week 9's main library object files are stored
+# The directory where Final Project main library object files are stored
 LIB_DIR     = ../Lib
 
 # The directory where the library object files for utilities are stored

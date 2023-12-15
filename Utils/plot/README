@@ -1,0 +1,23 @@
+ University of California, Berkeley
+# Chem 274B: Software Engineering Fundamentals for
+#            Molecular Sciences 
+# December 2023
+
+# 
+# Creator:  Group 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
+# Date Created: December 15, 2023
+# Directory Path: CHEM274B_FinalProject/Plot
+
+
+
+LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
+
+
+
+LIST OF FILES IN THIS DIRECTORY:
+- graph_timing.ipynb: graph with times of running sim for different n x n sized cellular automata
+- timedsim.csv: source file for grid size timing data
+
+
+
+

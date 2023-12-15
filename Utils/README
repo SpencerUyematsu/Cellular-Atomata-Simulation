@@ -1,0 +1,35 @@
+# University of California, Berkeley
+# Chem 274B: Software Engineering Fundamentals for
+#            Molecular Sciences 
+# December 2023
+
+# 
+# Creator: Group 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
+# Date Created: December 15, 2023
+# Directory Path: CHEM274B_FINALPROJECT/Utils
+
+
+
+LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
+
+- Include/: this directory contains all the APIs for Final Project utilities, 
+        which includes random generator functions and 
+        timing functions.
+
+- Lib/ : this directory contains all the library object files 
+	(.a) for Final Project
+
+- Metrics/ : Contain C++ program implementations of the
+	metrics (like timing functions) This directory should have only
+        source C++ files.
+- Plots : contains plots and any data associated with plots 
+
+
+LIST OF FILES IN THIS DIRECTORY:
+- README (this file) : file describing contents of subdirectory along with updates
+- Makefile : file to make targets in subdirectories
+
+
+
+
+

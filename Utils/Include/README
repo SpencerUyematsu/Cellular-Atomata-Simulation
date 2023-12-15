@@ -5,16 +5,18 @@
 
 # 
 # Creator:  Group 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
-# Date Created: December, 2023
-# Directory Path: CHEM274B_FINALPROJECT/Include
+# Date Created: December 15, 2023
+# Directory Path: Assignment4/Utils/Iinclude
+
 
 
 LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
-
+(no subdirectories)
 
 
 LIST OF FILES IN THIS DIRECTORY:
 - README (this file) : file describing contents of subdirectory along with updates
-- mycellularautomata.h : API header file containing declarations for cellula_automata, simulate, and rule classes; contains cell struct
+- mytimings.h: API to the timing utility
+- myrandom.h: API to the random utility
 
 
