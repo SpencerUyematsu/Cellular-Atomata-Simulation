@@ -1,8 +1,13 @@
 # Chem 274B: Software Engineering Fundamentals for
 # Molecular Sciences
-# Creator:  Team 14
+# Creators:  Team 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
 # Date Created: 12/05/2023
 # Directory Path: CHEM274B_FINALPROJECT/Source/Datatypes
+
+# Description: This makefile creates a static library of all the object files in this 
+#				directory. They support the cellular automaton application functionalites
+
+
 # GNU C++ Compiler
 CPP         = g++      # C++ Compuler
 
@@ -44,7 +49,9 @@ libmycellularautomata.a: $(DATA_OBJS)
 	mv $(DATA_LIB) $(LIB_DIR)
 	rm $(DATA_OBJS)
 
+# creates static library by running all .o targets
 all: $(DATA_LIB)
 
+# removes library object file from ../../library
 cleanall:
 	cd $(LIB_DIR); rm $(DATA_LIB)

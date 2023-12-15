@@ -1,22 +1,21 @@
 // Chem 274B: Software Engineering Fundamentals for
 //            Molecular Sciences 
-// Creator: Group 14
+// Creator: Team 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
 // Date Created: 12/03/2023
-// Last revisited: 12/03/2023
-//         This file contains a C++ hash table class implementation.
+// Last revisited: 12/15/2023
 //
+// Description:
+//              This file contains a C++ class implementation of the cellular automata
+//              class
 // mycellularautomata.h Contains the C++ Class declaration
 //               
 
-
 #include "mycellularautomata.h"
-#include <iostream>
-#include <climits>
-#include <limits.h>
-#include <stdexcept>
 
-//                                            CONSTRUCTORS
-// -------------------------------------------------------------------------------------------------
+
+
+//                                          CONSTRUCTORS
+// --------------------------------------------------------------------------------------------------
 
 // default constructor
 cellular_automata::cellular_automata(){
@@ -33,36 +32,80 @@ cellular_automata::~cellular_automata(){
     delete[] cellular_matrix; // delete cellular matrix
 }
 
-void cellular_automata::operator=(const cellular_automata& other){
-    height_ = other.height_;
-    width_ = other.width_;
-    cellular_matrix = new (nothrow) cell * [height_];
 
-    for (int i = 0; i < height_; i++) {
+/*  Function to overload = operator: 
+    (Utilizes assignment overloading to define = operator functionality when used
+    between two cellular_automata objects)
+
+    Parameters:
+    other: const cellular_automata reference
+        second cellular_automata object being equated 
+
+    Returns:
+        (no returns)
+*/
+void cellular_automata::operator=(const cellular_automata& other)
+{
+    height_ = other.height_; // equate heights
+    width_ = other.width_; // equate widths
+    cellular_matrix = new (nothrow) cell * [height_]; // alocate new memory for celluar_matrix (c-style array) 
+
+    for (int i = 0; i < height_; i++) 
+    {
         cellular_matrix[i] = new (nothrow) cell[width_]; // setup matrix columns
-        for (int j = 0; j < width_; j++){
-            cellular_matrix[i][j] = other.cellular_matrix[i][j];
+        for (int j = 0; j < width_; j++)
+        {
+            cellular_matrix[i][j] = other.cellular_matrix[i][j]; // fill up each cell with corresponding values
         }
     }
 
+// Copy all other attributes to new CA class instance
     num_states_ = other.num_states_;
-
     neighborhood_law_ = other.neighborhood_law_;
-
     boundary_ = other.boundary_;
     boundary_cell_ = other.boundary_cell_;
     boundary_type = other.boundary_type;
 }
 
+
+
 //                                           SETUP METHODS
 // --------------------------------------------------------------------------------------------------
 
+/*  Function to initialize all cellula automata setup functions: 
+    (User friendly function to setup all other setup functions of the automata. This includes
+    the dimensions, states, boundary, and neighborhood)
+
+    Parameters:
+    height: int
+        the height of cellular automata
+
+    width: int
+        the width of the cellular automata
+    
+    num_states: int
+        the number representation of possible states
+
+    state_probabilities: std::vector<double>
+        the probability of a state occuring
+
+    neighborhood_law: std::string
+        the neighborhood method for the cellluar automata functionalities
+
+    boundary: std::string
+        the boundary condition of the cellular automata
+    
+    Returns:
+        defined error codes.
+*/
 int cellular_automata::setup(int height, int width, int num_states, vector<double> state_probabilities, 
-                             std::string neighborhood_law, std::string boundary){
-    setup_dimensions(height, width);
-    setup_states(num_states, state_probabilities);
-    neighborhood_law_ = neighborhood_law;
-    setup_boundary(boundary);
+                             std::string neighborhood_law, std::string boundary)
+{
+    setup_dimensions(height, width); // setup dimensions
+    setup_states(num_states, state_probabilities); // assign states per probabilites
+    neighborhood_law_ = neighborhood_law; // set which neighborhood law for autotmata
+    setup_boundary(boundary); // set which boundary condition for automata
+    
     return NO_ERROR;
 }
 
@@ -272,6 +315,17 @@ std::vector<cell> cellular_automata::get_neighborhood(int column) {
         neighbors.push_back(cellular_matrix[0][column + 1]);
     }
     return neighbors;
+}
+
+std::vector<int> cellular_automata::get_state_count() const
+{
+    std::vector<int> state_count(num_states_, 0);
+    for(int i = 0; i < height_; i++){
+        for(int j = 0; j < width_; j++){
+            state_count[cellular_matrix[i][j].type] += 1;
+        }
+    }
+    return state_count;
 }
 
 int cellular_automata::get_num_states(){
