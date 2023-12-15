@@ -1,0 +1,23 @@
+# University of California, Berkeley
+# Chem 274B: Software Engineering Fundamentals for 
+# Molecular Sciences
+# November 2023
+# 
+# Creator:  Team 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
+#
+# Date Created: 12/12/2023
+# Last Updated: 12/15/2023
+#
+# Directory Path: CHEM274B_FINALPROJECT/Tests
+
+LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
+(no subdirectories)
+
+LIST OF FILES IN THIS DIRECTORY:
+- README : (this file)
+- Makefile : defines the make targets to compile the tests defined. All executables are moved
+    to the Bin directory.
+- test_setup : tests that the cellular automata can be setup with appropriate dimensions
+    for 1D and 2D matrices. It also tests that the setup_states function works properly.
+- test_boundaries : tests the neighborhoods are correctly identified for different neighborhood
+    laws and boundary conditions.
