@@ -3,13 +3,13 @@
 // Creator: Group 14
 // Date Created: 12/05/2023
 // Last revisited: 12/05/2023
-//         This file contains a C++ hash table class implementation.
-//
-// mycellularautomata.h Contains the C++ Class declaration
+//         This file contains a function that generates a random number between 0 and 1.
 //         
 
 #include <random>
 
+
+// This function generates a random number between 0 and 1.
 double rand_number(){
     // Create a random device to seed the random number generator
     std::random_device rd;
