@@ -36,5 +36,11 @@ test_setup: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) test_setup test_setup.cpp \
 	-I$(INC_DIR) -L$(LIB_DIR) -lmycellularautomata
 
+test_all: $(INC_DIR)/mycellularautomata.h
+	$(CPP) $(CPPFLAGS) test_all test_all.cpp \
+	-I$(INC_DIR) -L$(LIB_DIR) -lmycellularautomata
+	./test_all
+	rm test_all
+
 CA:
 	cd ../Source/Datatypes; make all

@@ -16,32 +16,38 @@ class cellular_automata{
     public:
         cellular_automata();    // default constructor
         ~cellular_automata();   // default destructor
+        void operator=(const cellular_automata& other);
+        cell& operator()(int row, int col);
+
+        int setup(int height, int width, int num_states, vector<double> state_probabilities, 
+                  std::string neighborhood_law, std::string boundary);
         int setup_dimensions(int height, int width);
         int setup_states(int num_states, vector<double> state_probabilities);
         int setup_prob(vector<double> &state_probabilities);
-        int print_CA_status();
+        int setup_boundary(std::string boundary);
         int setup_neighborhood(std::string neighborhood_law);
+        int setup_fixed_boundary(int type);
+
+        
         std::vector<cell> get_neighborhood(int row, int column);
         std::vector<cell> get_neighborhood(int column);
-
         cell get_cell(int row, int col);
-        const cell ** cellular_automata::get_cellular_matrix() const;
+        // const cell ** cellular_automata::get_cellular_matrix() const;
+        int get_num_states();
 
-        int setup_boundary(std::string boundary);
-        int setup_fixed_boundary(int type);
+        int print_CA_status();
 
     private:
         cell **cellular_matrix;
         int height_;
         int width_;
         int num_states_;
+
         std::string neighborhood_law_;
-        std::vector<cell> neighborhood_;
 
         std::string boundary_;
         int boundary_cell_;
         int boundary_type;
-
 };
 
 #define NO_ERROR 0
@@ -52,6 +58,28 @@ class cellular_automata{
 #define NEIGHBORHOOD_INVALID_TYPE = - 5
 #define ERR_NEIGHBORHOOD_NOT_SET = -6
 
+class rule{
+    public:
+        rule();
+        ~rule();
+        int setup_straight_conditional(std::string rule, int initial_type, int final_type, int num_steps);
+        int setup_conditional_transition(int initial_type, int neighbor_type);
+        int setup_majority(int initial_type, int neighbor_type, int num_states);
+        int apply(cell starting_cell, std::vector<cell> neighbors);
+        int straight_conditional_rule(cell starting_cell);
+        int conditional_transition_rule(cell starting_cell, std::vector<cell> neighbors);
+        int majority_rule(cell starting_cell, std::vector<cell> neighbors);
+    
+    private:
+        std::string rule_type_;
+        int initial_type_;
+        int transition_type_;
+        int num_steps_;
+        int num_states_;
+};
+
+#define ERR_NO_RULE_SETUP -7
+
 class simulate{
     public:
         simulate();
@@ -59,10 +87,13 @@ class simulate{
         int setup_simulation(cellular_automata &CA);
         int step();
         int print_sim_status();
-        int straight_conditional_transition_rule(int row, int column, int initial_type, int final_type, int num_steps);
-        int conditional_transition_rule_on_neighbor(int row, int column, int initial_type, int neighbor_type);
+        int add_rule(rule new_rule);
 
     private:
-        vector<cellular_automata> CA_record;
+        cellular_automata CA1;
+        cellular_automata CA2;
         int step_number;
+        vector<rule> rules;
+        int height_;
+        int width_;
 };

@@ -1,77 +1,33 @@
+#include <map>
+#include <limits.h>
 #include "mycellularautomata.h"
 
 simulate::simulate(){};
 
 simulate::~simulate(){};
 
-int simulate::setup_simulation(cellular_automata &CA);
+int simulate::setup_simulation(cellular_automata &CA){}
 
-
-
-int stimulate::straight_conditional_transition_rule(int row, int column, int initial_type, int final_type, int num_steps) const {
-    
-    if (CA.get_cell(row, column).type == initial_type && CA.get_cell(row, column).steps_passed >= num_steps) {
-        
-        CA.get_cell(row, column).type = final_type; // change cell to final type
-        CA.get_cell(row, column).steps_passed = 0; // reset steps passed
-    }
-
+int simulate::add_rule(rule new_rule) {
+    rules.push_back(new_rule);
     return NO_ERROR;
 }
 
-
-int simulate::conditional_transition_rule_on_neighbor(int row, int column, int initial_type, int neighbor_type) const {
-
-    if (CA.get_cell(row, column).type != intial_type) {
-    
-        return NO_ERROR:
-    
-    }
-   
-   
-   std::vector<cell> neighbors = CA.get_neighborhood(row, column); // get neighbors of cell
-
-   for (size_t i = 0; i < neighbors.size(); i++) {
-        
-        if (neighbors[i].type == neighbor_type) {
-
-            CA.get_cell(row, column).type = neighbor_type;
-            CA.get_cell(row, column).steps_passed = 0;
-
-            break;
+int simulate::step(){
+    int new_type;
+    std::vector<cell> neighbors;
+    CA2 = CA1;
+    for(int i = 0; i < height_; i++){
+        for(int j = 0; i < width_; j++){
+            neighbors = CA1.get_neighborhood(i, j);
+            for(size_t k = 0; k < rules.size(); k++){
+                CA2(i, j).type = rules[k].apply(CA1(i, j), neighbors);
+            }
+            if(CA2(i, j).type != CA1(i, j).type){
+                CA2(i, j).steps_passed = 0;
+            }
         }
-
-       
-   }
-
-    return NO_ERROR;
-
-}
-
-
-
-
-int simulate::majority_rule(int row, int column) const { // type only depends on average
-// of neighbor types
-
-
-    std::vector<cell> neighbors = CA.get_neighborhood(row, column); // get neighbors of cell
-
-
-    double sum = 0; // store sum of types
-
-    for (size_t i = 0; i < neighbors.size(); i++) {
-        
-       sum += nieghbors[i].type;
-   
     }
-
-    CA.get_cell(row, column).type = round(sum/neighbors.size()) // set type to majority 
-    // type of neighbor cells
-
-
+    CA1 = CA2;
     return NO_ERROR;
-
-
 }
-
