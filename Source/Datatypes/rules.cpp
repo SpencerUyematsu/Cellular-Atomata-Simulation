@@ -1,5 +1,6 @@
 #include <vector>
 #include "mycellularautomata.h"
+#include "myrandom.h"
 #include <limits.h>
 
 rule::rule(){};
@@ -29,6 +30,15 @@ int rule::setup_majority(int initial_type, int neighbor_type, int num_states){
     return NO_ERROR;
 }
 
+int rule::setup_probabilistic(int initial_state, int final_type_1, int final_type_2, int num_steps, double probability){
+    rule_type_ = "probabalistic";
+    num_steps_ = num_steps;
+    transition_type_ = final_type_1;
+    transition_type_2_ = final_type_2;
+    probability_ = probability;
+    return NO_ERROR;
+}
+
 int rule::apply(cell starting_cell, std::vector<cell> neighbors){
     if(rule_type_ == "straight conditional"){
         return straight_conditional_rule(starting_cell);
@@ -36,6 +46,8 @@ int rule::apply(cell starting_cell, std::vector<cell> neighbors){
         return conditional_transition_rule(starting_cell, neighbors);
     } else if(rule_type_ == "majority") {
         return  majority_rule(starting_cell, neighbors);
+    } else if(rule_type_ == "probabalistic") {
+        return probability_rule(starting_cell);
     } else {
         return ERR_NO_RULE_SETUP;
     }
@@ -77,4 +89,13 @@ int rule::majority_rule(cell starting_cell, std::vector<cell> neighbors){
     }
     return max_type;
 }
-
+int rule::probability_rule(cell starting_cell){
+    if((starting_cell.type == initial_type_) && (starting_cell.steps_passed >= num_steps_)){
+        double random = rand_number();
+        if(random < probability_){
+            return transition_type_;
+        } else {
+            return transition_type_2_;
+        }
+    } else return starting_cell.type;
+}
