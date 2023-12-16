@@ -44,7 +44,8 @@ rules.o: $(INC_DIR)/mycellularautomata.h
 	-L$(ULIB_DIR) -lmyrandom
 
 simulation.o: $(INC_DIR)/mycellularautomata.h
-	$(CPP) $(CPPFLAGS) simulation.cpp -I$(INC_DIR)
+	$(CPP) $(CPPFLAGS) simulation.cpp -I$(INC_DIR) -I$(UTIL_DIR) \
+	-L$(ULIB_DIR) -lmyrandom
 
 # We use the Linux command 'ar' to create the library by archiving previously created object files
 # (here we are archiving in the library all the DATA_OBJS listed
