@@ -30,7 +30,7 @@ BIN_DIR     = ../Bin
 
 # The next line contains a list of executable object files 
 # created by this Makefile.
-EXECUTABLES = test_setup test_boundaries 
+EXECUTABLES = test_setup test_boundaries test_boundaries test_rules test_simulation test_timed_simulation
 
 test_setup: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) test_setup test_setup.cpp \
@@ -56,15 +56,11 @@ test_simulation: $(INC_DIR)/mycellularautomata.h
 	-L$(ULIB_DIR) -lmyrandom
 	mv test_simulation $(BIN_DIR)
 
-test_timed_sim: $(INC_DIR)/mycellularautomata.h
+test_timed_simulation: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) test_timed_simulation test_timed_simulation.cpp \
 	-I$(INC_DIR) -L$(LIB_DIR) -lmycellularautomata \
 	-I$(UINC_DIR) -L$(ULIB_DIR) -lmyrandom -lmymetrics
-	./test_timed_simulation
-	rm test_timed_simulation
-
-CA:
-	cd ../Source/Datatypes; make all
+	mv test_timed_simulation $(BIN_DIR)
 
 all: $(EXECUTABLES)
 

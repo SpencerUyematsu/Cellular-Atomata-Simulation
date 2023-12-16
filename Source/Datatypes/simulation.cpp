@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include "mycellularautomata.h"
+#include "myrandom.h"
 
 simulate::simulate(){};
 

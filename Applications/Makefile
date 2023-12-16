@@ -14,6 +14,9 @@ APPLICATION = Visualization/CASim.py
 
 # run 
 application:
+	cd Example; make virus_simulation; \
+	./virus_simulation; mv virus_simulation ../Bin; \
+	mv virus_results.csv ../Data; mv virus_simulation_stats.csv ../Data;
 	python ${APPLICATION}
 
 
