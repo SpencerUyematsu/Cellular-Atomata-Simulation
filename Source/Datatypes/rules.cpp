@@ -81,6 +81,7 @@ int rule::majority_rule(cell starting_cell, std::vector<cell> neighbors){
         if(neighbors[i].type < INT_MAX){
             type_count[neighbors[i].type] += 1;
             if(type_count[neighbors[i].type] > max_count){
+                max_count = type_count[neighbors[i].type];
                 max_type = neighbors[i].type;
             } else if(type_count[neighbors[i].type] == max_count) {
                 max_type = starting_cell.type;
