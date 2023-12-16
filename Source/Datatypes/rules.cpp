@@ -67,6 +67,7 @@ int rule::setup_majority(int initial_type, int neighbor_type, int num_states)
 int rule::setup_probabilistic(int initial_state, int final_type_1, int final_type_2, int num_steps, double probability){
     rule_type_ = "probabalistic";
     num_steps_ = num_steps;
+    initial_type_ = initial_state;
     transition_type_ = final_type_1;
     transition_type_2_ = final_type_2;
     probability_ = probability;

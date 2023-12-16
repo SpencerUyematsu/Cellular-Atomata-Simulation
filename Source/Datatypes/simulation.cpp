@@ -59,9 +59,9 @@ int simulate::run(){
     ofstream filestream2;
     filestream2.open(filename_2_);
 
-
-    for (int i = 0; i < width_; i++){
-        filestream << i << ",";
+    filestream << 0;
+    for (int i = 1; i < width_; i++){
+        filestream << "," << i;
     }
     filestream2 << "timestep,width,height";
     
@@ -76,14 +76,15 @@ int simulate::run(){
 
     // Print initial state
     for(int k = 0; k < height_; k++){
-        for(int j = 0; j < width_; j++){
-            filestream << CA1(k,j).type << ",";
+        filestream << CA1(k,0).type;
+        for(int j = 1; j < width_; j++){
+            filestream << "," << CA1(k,j).type;
         }
         filestream << endl;
     }
-    filestream2 << step_number << "," << width_ << "," << height_ << ",";
+    filestream2 << step_number << "," << width_ << "," << height_;
     for (int i = 0; i <  CA1.get_state_count().size(); i++) {
-        filestream2 << CA1.get_state_count()[i] << ",";
+        filestream2 << "," << CA1.get_state_count()[i];
     }
     filestream2 << endl; 
 
@@ -91,8 +92,9 @@ int simulate::run(){
     for(int s = 0; s < total_steps_; s++){
         step();
         for(int k = 0; k < height_; k++){
-            for(int j = 0; j < width_; j++){
-                filestream << CA1(k,j).type << ",";
+            filestream << CA1(k,0).type;
+            for(int j = 1; j < width_; j++){
+                filestream  << "," << CA1(k,j).type;
             }
             filestream << endl;        
         }
