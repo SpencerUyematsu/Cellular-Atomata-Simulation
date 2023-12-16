@@ -9,7 +9,7 @@
 
 
 # Cellular automata application
-APPLICATION = CASim.py
+APPLICATION = Visualization/CASim.py
 
 
 # run 
