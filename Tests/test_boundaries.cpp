@@ -1,3 +1,13 @@
+// Chem 274B: Software Engineering Fundamentals for
+//            Molecular Sciences 
+// Creator: Team 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
+// Date Created: 12/15/2023
+// Last revisited: 12/15/2023
+//
+// Description: This file tests both the boundary condition rules 
+//              and the neighborhood laws for the cellular automata
+//              
+//               
 
 #include <mycellularautomata.h>
 
@@ -21,7 +31,7 @@ int main(){
     // print CA grid
     CA.print_CA_status();
 
-    // test a number of boundary conditions and neighborhood rules
+    // test combinations boundary conditions and neighborhood rules
     CA.setup_boundary("periodic");
     CA.setup_neighborhood("Moore");
     
