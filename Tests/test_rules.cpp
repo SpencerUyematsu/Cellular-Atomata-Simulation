@@ -1,12 +1,22 @@
+// Chem 274B: Software Engineering Fundamentals for
+//            Molecular Sciences 
+// Creator: Team 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
+// Date Created: 12/15/2023
+// Last revisited: 12/15/2023
+//
+// Description: This file tests the four different rules that can be
+//              applicable for the cellular automata.
+// 
+
 #include <iostream>
 #include "mycellularautomata.h"
 using namespace std;
 
 int main(){
+    // setup cellular automata
     cellular_automata CA;
     vector<double> prob = {0.5, 0.3};
-    std::vector<cell> neighbors;
-    int new_type;
+    std::vector<cell> neighbors; // used to store the neighbors for each cell
 
     CA.setup_dimensions(5, 4);
     CA.setup_states(3, prob);

@@ -1,3 +1,14 @@
+// Chem 274B: Software Engineering Fundamentals for
+//            Molecular Sciences 
+// Creator: Team 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
+// Date Created: 12/15/2023
+// Last revisited: 12/15/2023
+//
+// Description: This file tests the different ways to run a simulation
+//              including running one step at a time and running a set of steps.
+//              
+// 
+
 #include "mycellularautomata.h"
 #include <iostream>
 
