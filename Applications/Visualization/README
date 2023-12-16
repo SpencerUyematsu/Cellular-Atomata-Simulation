@@ -5,15 +5,14 @@
 # 
 # Creator:  Group 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
 # Date Created: December, 2023
-# Directory Path: CHEM274B_FINALPROJECT/Applications/Visualization
+# Directory Path: CHEM274B_FINALPROJECT/Applications/Visualiztion
 
-All executable object files are in this directory 
+All python visualiztion tools are in this subdirectory
 
 LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
-- Bin
-- Data
-- Example
-- Visualization
+(no subdirectories)
 
 LIST OF FILES IN THIS DIRECTORY:
 - README:(this file) 
+- CASim.ipynb: jupyter notebook for cellular automata simulation output
+- CASim.py: python script that will output animation of cellular automata simulation

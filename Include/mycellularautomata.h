@@ -26,22 +26,22 @@ class cellular_automata{
     public:
         cellular_automata();    // default constructor
         ~cellular_automata();   // default destructor
-        void operator=(const cellular_automata& other);
+        void operator=(const cellular_automata& other); // overloads = operator
         cell& operator()(int row, int col);
         cell& operator()(int col);
 
         int setup(int height, int width, int num_states, vector<double> state_probabilities, 
-                  std::string neighborhood_law, std::string boundary);
-        int setup_dimensions(int height, int width);
-        int setup_dimensions(int width);
-        int setup_states(int num_states, vector<double> state_probabilities);
-        int setup_prob(vector<double> &state_probabilities);
-        int setup_boundary(std::string boundary);
-        int setup_neighborhood(std::string neighborhood_law);
+                  std::string neighborhood_law, std::string boundary); // main setup, sets up all other set-ups in automata class
+        int setup_dimensions(int height, int width); // sets up 2d automata
+        int setup_dimensions(int width); // sets up 1d automata
+        int setup_states(int num_states, vector<double> state_probabilities); // sets up states
+        int setup_prob(vector<double> &state_probabilities); // restructures states probabilites for random number usage
+        int setup_boundary(std::string boundary); // sets up boundaries
+        int setup_neighborhood(std::string neighborhood_law); // sets up neighborhood law
         int setup_fixed_boundary(int type);
-        std::vector<int> get_state_count() const;
+        std::vector<int> get_state_count() const; // getter function state count
 
-        
+        // getter functions
         std::vector<cell> get_neighborhood(int row, int column);
         std::vector<cell> get_neighborhood(int column);
         cell get_cell(int row, int col);
@@ -52,7 +52,7 @@ class cellular_automata{
         int print_CA_status();
 
     private:
-        cell **cellular_matrix;
+        cell **cellular_matrix; // nested c-style array
         int height_;
         int width_;
         int num_states_;
@@ -64,19 +64,20 @@ class cellular_automata{
         int boundary_type;
 };
 
-#define NO_ERROR 0
-#define ERR_ALREADY_SETUP -1
-#define ERR_NUM_STATES -2
-#define ERR_INC_PROBABILITY -3
-#define ERR_NO_SETUP -4
-#define NEIGHBORHOOD_INVALID_TYPE = - 5
-#define ERR_NEIGHBORHOOD_NOT_SET = -6
-#define ERR_INVALID_DIMENSIONS -7
+// define error codes
+#define NO_ERROR 0 //           No error runs smoothly,
+#define ERR_ALREADY_SETUP -1 // Auomata state already set up
+#define ERR_NUM_STATES -2 //    Number of states errror
+#define ERR_INC_PROBABILITY -3 //   Probability greater than 1
+#define ERR_NO_SETUP -4 //      Need to set up automata
+#define NEIGHBORHOOD_INVALID_TYPE = - 5 // Invalid neighborhood
+#define ERR_NEIGHBORHOOD_NOT_SET = -6 // set up a neighborhood
+#define ERR_INVALID_DIMENSIONS -7 // dimensions below 0
 
 class rule{
     public:
-        rule();
-        ~rule();
+        rule(); // default constructor
+        ~rule(); // default destructor
         int setup_straight_conditional(int initial_type, int final_type, int num_steps);
         int setup_conditional_transition(int initial_type, int neighbor_type);
         int setup_majority(int initial_type, int neighbor_type, int num_states);
@@ -101,8 +102,8 @@ class rule{
 
 class simulate{
     public:
-        simulate();
-        ~simulate();
+        simulate(); // default constructor
+        ~simulate(); // default destructor
         int setup_simulation(cellular_automata &CA, int total_steps, int steps_per_output, std::string filename, std::string filename2);
         const cellular_automata& step();
         int run();

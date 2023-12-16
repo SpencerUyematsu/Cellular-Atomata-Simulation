@@ -5,7 +5,7 @@
 # 
 # Creator:  Group 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
 # Date Created: December, 2023
-# Directory Path: CHEM274B_FINALPROJECT/Bin/
+# Directory Path: CHEM274B_FINALPROJECT/Applications/Example
 
 All executable object files are in this directory 
 
@@ -13,9 +13,5 @@ LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
 (no subdirectories)
 
 LIST OF FILES IN THIS DIRECTORY:
-- README:(this file) 
-- test_setup: tests the setup function in automata class
-- test_boundaries: tests the boundaries functionalites
-- test_rules: tests the rules class functionalites
-- test_simulation: tests the simulation class functionalites
-- test_timed_simulation: times the simulation for temporal analysis
+- README:(this file)
+- virus_simulation.cpp: runs the example application

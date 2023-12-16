@@ -1,0 +1,25 @@
+# Chem 274B: Software Engineering Fundamentals for
+#            Molecular Sciences 
+# University of California, Berkeley
+# December 2023
+# 
+# Creator:  Group 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
+# Date Created: December, 2023
+# Directory Path: CHEM274B_FINALPROJECT/Applications/Data
+
+This directory contains the data produced from c++ class cellular automata applications. They 
+are utilized by the python visulaization tools to produce cellular automata
+
+LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
+(no subdirectories)
+
+LIST OF FILES IN THIS DIRECTORY:
+- README:(this file) 
+- virus_results_0.5.csv: produces results for the 50% cell survirval rate simulation
+- virus_results_0.7.csv: produces results for the 70% cell survirval rate simulation
+- virus_results_0.9.csv: produces results for the 90% cell survirval rate simulation
+- virus_results.csv: produces results for cell survival rate simulation
+- virus_simulation_stats_0.5.csv: produces graph results for the 50% cell survival rate simulation
+- virus_simulation_stats_0.7.csv: produces graph results for the 70% cell survival rate simulation
+- virus_simulation_stats_0.9.csv: produces graph results for the 90% cell survival rate simulation
+- virus_simulation_stats.csv: produces results for graph survival rate simulation

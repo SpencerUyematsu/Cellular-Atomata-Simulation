@@ -5,15 +5,13 @@
 # 
 # Creator:  Group 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
 # Date Created: December, 2023
-# Directory Path: CHEM274B_FINALPROJECT/Applications/Visualization
+# Directory Path: CHEM274B_FINALPROJECT/Applications/Bin/
 
-All executable object files are in this directory 
+This directory that holds the executables 
 
 LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
-- Bin
-- Data
-- Example
-- Visualization
+(no subdirectories)
 
 LIST OF FILES IN THIS DIRECTORY:
 - README:(this file) 
+- virus_simulation:
