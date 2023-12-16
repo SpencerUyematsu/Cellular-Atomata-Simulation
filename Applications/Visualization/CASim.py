@@ -5,7 +5,7 @@ import matplotlib.animation as mani
 import seaborn as sns
 
 
-state = pd.read_csv("../Data/virus_results.csv")
+state = pd.read_csv("Data/virus_results.csv")
 
 data = state
 state = data.values.reshape(-1,50,50)

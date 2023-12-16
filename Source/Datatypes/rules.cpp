@@ -16,6 +16,7 @@
 //               
 
 #include "mycellularautomata.h"
+#include "myrandom.h"
 
 
 //                                          CONSTRUCTORS

@@ -23,3 +23,4 @@ virus_simulation:
 	$(CPP) $(CPPFLAGS) virus_simulation virus_simulation.cpp \
 	-I$(INC_DIR) -I$(UINC_DIR) -L$(LIB_DIR) -lmycellularautomata \
 	-L$(ULIB_DIR) -lmyrandom
+	mv virus_simulation $(BIN_DIR)

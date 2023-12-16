@@ -14,7 +14,7 @@ int main(){
     rule get_infected;
 
     infect_1.setup_straight_conditional(1, 2, 2);
-    infect_2.setup_probabilistic(2, 0, 3, 2, 0.9);
+    infect_2.setup_probabilistic(2, 0, 3, 2, 0.5);
     //infect_2.setup_straight_conditional(2, 3, 2);
     infect_3.setup_straight_conditional(3, 4, 1);
 
