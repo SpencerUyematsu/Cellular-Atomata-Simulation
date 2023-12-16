@@ -65,7 +65,11 @@ int rule::setup_majority(int initial_type, int neighbor_type, int num_states)
     return NO_ERROR;
 }
 
-int rule::setup_probabilistic(int initial_state, int final_type_1, int final_type_2, int num_steps, double probability){
+int rule::setup_probabilistic(int initial_state, int final_type_1, int final_type_2, int num_steps, double probability)
+/* Function to set up the probability rule */
+
+// After a certain number of time steps this function changes states of cells based on probability
+{
     rule_type_ = "probabalistic";
     num_steps_ = num_steps;
     initial_type_ = initial_state;
@@ -75,7 +79,10 @@ int rule::setup_probabilistic(int initial_state, int final_type_1, int final_typ
     return NO_ERROR;
 }
 
-int rule::apply(cell starting_cell, std::vector<cell> neighbors){
+int rule::apply(cell starting_cell, std::vector<cell> neighbors)
+/* Function to add rules to the simulation*/
+{
+    // Add rules based on string rule type
     if(rule_type_ == "straight conditional"){
         return straight_conditional_rule(starting_cell);
     } else if(rule_type_ == "conditional transition"){
@@ -89,7 +96,10 @@ int rule::apply(cell starting_cell, std::vector<cell> neighbors){
     }
 }
 
-int rule::straight_conditional_rule(cell starting_cell){
+
+// These functions return the next cell type
+int rule::straight_conditional_rule(cell starting_cell)
+{
     if((starting_cell.type == initial_type_) && (starting_cell.steps_passed >= num_steps_)){
         return transition_type_;
     } else {
@@ -97,7 +107,9 @@ int rule::straight_conditional_rule(cell starting_cell){
     }
 }
 
-int rule::conditional_transition_rule(cell starting_cell, std::vector<cell> neighbors){
+int rule::conditional_transition_rule(cell starting_cell, std::vector<cell> neighbors)
+/* This function applies a state to a cell depending on the state of its neighbor*/
+{
     if(starting_cell.type == initial_type_){    
         for (size_t i = 0; i < neighbors.size(); i++){
             if(neighbors[i].type == transition_type_){
@@ -108,7 +120,9 @@ int rule::conditional_transition_rule(cell starting_cell, std::vector<cell> neig
     return starting_cell.type;
 }
 
-int rule::majority_rule(cell starting_cell, std::vector<cell> neighbors){
+int rule::majority_rule(cell starting_cell, std::vector<cell> neighbors)
+/* This function applies a state based on the majority states of its neighbors*/
+{
     int max_count = 0;
     int max_type = 0;
     std::vector<int> type_count(num_states_, 0);
@@ -126,7 +140,9 @@ int rule::majority_rule(cell starting_cell, std::vector<cell> neighbors){
     }
     return max_type;
 }
-int rule::probability_rule(cell starting_cell){
+int rule::probability_rule(cell starting_cell)
+/* This function applies a state to cells based on probability and time passed*/
+{
     if((starting_cell.type == initial_type_) && (starting_cell.steps_passed >= num_steps_)){
         double random = rand_number();
         if(random < probability_){

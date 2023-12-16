@@ -1,3 +1,18 @@
+# Chem 274B: Software Engineering Fundamentals for
+#            Molecular Sciences 
+# Creator: Team 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
+# Date Created: 12/03/2023
+# Last revisited: 12/15/2023
+#
+# Description:
+#              This file contains a python script for performing the visualization animation for 
+#               the automata simulation. It reads from the files generated in Applicatoins/Data and uses 
+#                numpy and panda for efficient functionality
+
+#
+# mycellularautomata.h Contains the C++ Class declaration
+#  
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd

@@ -1,3 +1,17 @@
+// Chem 274B: Software Engineering Fundamentals for
+//            Molecular Sciences 
+// Creator: Team 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
+// Date Created: 12/03/2023
+// Last revisited: 12/15/2023
+//
+// Description:
+//              This file contains a C++ class implementation for the cellular automata
+//              class simulation. Simulates a cellular automata based on the initial condition of the
+//              the automata. It cycles throught the automata and updates each cell based on the previous cell 
+//              states
+//             
+//              mycellularautomata.h Contains the C++ Class declaration
+//               
 #include <map>
 #include <limits.h>
 #include <fstream>
@@ -5,11 +19,18 @@
 #include "mycellularautomata.h"
 #include "myrandom.h"
 
-simulate::simulate(){};
+//                                          CONSTRUCTORS
+// --------------------------------------------------------------------------------------------------
+simulate::simulate(){}; // default constructor
 
-simulate::~simulate(){};
+simulate::~simulate(){}; // default destructor
 
-int simulate::setup_simulation(cellular_automata &CA, int total_steps, int steps_per_output, std::string filename, std::string filename2){
+
+//                                          FUNCTIONS
+// --------------------------------------------------------------------------------------------------
+int simulate::setup_simulation(cellular_automata &CA, int total_steps, int steps_per_output, std::string filename, std::string filename2)
+/* Function that takes in automata class, filenames, total steps and steps per output to set up an automata simulation*/
+{
     CA1 = CA;
     step_number = 0;
     filename_ = filename;
@@ -21,17 +42,23 @@ int simulate::setup_simulation(cellular_automata &CA, int total_steps, int steps
     return NO_ERROR;
 }
 
-int simulate::add_rule(rule new_rule) {
+int simulate::add_rule(rule new_rule) 
+/* This function applies user specified rules to simulation*/
+{
     rules.push_back(new_rule);
     return NO_ERROR;
 }
 
-const cellular_automata& simulate::step(){
+const cellular_automata& simulate::step()
+/* This function runs a time step by applying the rules to the current cell state and recordeing them to CA2*/
+{
     int new_type;
     std::vector<cell> neighbors;
     CA2 = CA1;
 
-    for(int i = 0; i < height_; i++){
+// Loop through each cell 
+    for(int i = 0; i < height_; i++)
+    {
         for(int j = 0; j < width_; j++){
             neighbors = CA1.get_neighborhood(i, j);
 
@@ -48,13 +75,15 @@ const cellular_automata& simulate::step(){
 
         }
     }
-    CA1 = CA2;
+    CA1 = CA2; // assign CA2 to CA1
 
     step_number += 1;
     return CA1;
 }
 
-int simulate::run(){
+int simulate::run()
+
+{
     ofstream filestream;
     filestream.open(filename_);
     ofstream filestream2;
