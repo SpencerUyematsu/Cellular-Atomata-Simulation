@@ -1,13 +1,39 @@
-#include <vector>
-#include "mycellularautomata.h"
-#include "myrandom.h"
-#include <limits.h>
+// Chem 274B: Software Engineering Fundamentals for
+//            Molecular Sciences 
+// Creator: Team 14 (Spencer Uyematsu, Michael Soto, Kofi Mireku)
+// Date Created: 12/03/2023
+// Last revisited: 12/15/2023
+//
+// Description:
+//              This file contains a C++ class implementation of rules for the cellular automata
+//              class. 
+//              The straight conditional rule changes a cell to another state after a timestep. 
+//              The conditional transition rule changes a cell to another state depending on the state of 
+//              of its neighbors
+//              The Majority rule changes a cell's state based on the dominant state of the majority of its
+//              neighbors 
+//              mycellularautomata.h Contains the C++ Class declaration
+//               
 
+#include "mycellularautomata.h"
+
+
+//                                          CONSTRUCTORS
+// --------------------------------------------------------------------------------------------------
+// default constructors
 rule::rule(){};
 
+// default destructor
 rule::~rule(){};
 
-int rule::setup_straight_conditional(int initial_type, int final_type, int num_steps){
+//                                          FUNCTIONS
+// --------------------------------------------------------------------------------------------------
+
+
+int rule::setup_straight_conditional(int initial_type, int final_type, int num_steps)
+/*  Function to define straight conditional rule (sets one cell type to another cell type) */
+{
+    // set parameters of cell(t) to cell(t+1)
     rule_type_ = "straight conditional";
     num_steps_ = num_steps;
     initial_type_ = initial_type;
@@ -15,14 +41,22 @@ int rule::setup_straight_conditional(int initial_type, int final_type, int num_s
     return NO_ERROR;
 }
 
-int rule::setup_conditional_transition(int initial_type, int neighbor_type){
+int rule::setup_conditional_transition(int initial_type, int neighbor_type)
+/*  Function to define conditional transition rule (sets one cell type to another cell type based on
+                                                    its neighbors) */
+
+{
+    // set parameters of cell(t) to cell neighbor(t+1)
     rule_type_ = "conditional transition";
     initial_type_ = initial_type;
     transition_type_ = neighbor_type;
     return NO_ERROR;
 }
 
-int rule::setup_majority(int initial_type, int neighbor_type, int num_states){
+int rule::setup_majority(int initial_type, int neighbor_type, int num_states)
+/*  Function to define majority rule (sets one cell type to another cell type based on
+                                                    majority state of its neighbors) */
+{
     rule_type_ = "majority";
     num_states_ = num_states;
     initial_type_ = initial_type;
