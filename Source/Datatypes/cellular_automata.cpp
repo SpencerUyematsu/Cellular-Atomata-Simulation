@@ -11,7 +11,7 @@
 //               
 
 #include "mycellularautomata.h"
-#include "myrandom.h"
+
 
 //                                          CONSTRUCTORS
 // --------------------------------------------------------------------------------------------------
@@ -108,8 +108,8 @@ int cellular_automata::setup(int height, int width, int num_states, vector<doubl
     return NO_ERROR;
 }
 
-/*  Function to set up cellula automata structure: 
-    (Defines the structure of automata, i.e the height, width, rows and columns)
+/*  Function to set up 2 dimensional cellular automata structure: 
+    (Defines and sets up the structure of automata, i.e the height, width, rows and columns)
 
     Parameters:
     hwight: int
@@ -123,13 +123,24 @@ int cellular_automata::setup(int height, int width, int num_states, vector<doubl
 */
 int cellular_automata::setup_dimensions(int height, int width) {
 
-    if (cellular_matrix != nullptr) { // already setup
+//                  Error Checks
+// ----------------------------------------------------
+    if (cellular_matrix != nullptr) //already setup 
+    { 
         std::cout << "Error 1: Cellular Automata Class Already Setup " << std::endl; 
 
         return ERR_ALREADY_SETUP; 
-    } else if ((width <= 0) || (height <= 0)){
+    } 
+
+    // Check for invalid dimensions
+    else if ((width <= 0) || (height <= 0))
+    {
         return ERR_INVALID_DIMENSIONS;
-    } else {
+    } 
+//                  Setup CA
+//----------------------------------------------------------
+    else 
+    {
         height_ = height; // set height 
         width_ = width; // set width
 
@@ -142,14 +153,39 @@ int cellular_automata::setup_dimensions(int height, int width) {
     }
 }
 
-int cellular_automata::setup_dimensions(int width) {
+/*  Function to set up 1 dimensional cellular automata structure : 
+    (Defines and sets up the structure of automata)
 
-    if (cellular_matrix != nullptr) { // already setup
+    Parameters:
+    width: int
+        the width of the cellular automata
+
+    Returns:
+        defined error codes.
+*/
+
+int cellular_automata::setup_dimensions(int width) 
+{
+
+//                  Error Checks
+// ----------------------------------------------------
+// 1. Check if cellular automata has already been setup 
+    if (cellular_matrix != nullptr) 
+    { 
         std::cout << "Error 1: Cellular Automata Class Already Setup " << std::endl;
         return ERR_ALREADY_SETUP; 
-    } else if (width <= 0){
+    } 
+
+// 2. Check for invalid dimensions
+    else if (width <= 0)
+    {
         return ERR_INVALID_DIMENSIONS;
-    } else {
+    } 
+    
+//                  Setup CA
+//----------------------------------------------------------
+    else 
+    {
         height_ = 1; // set height 
         width_ = width; // set width
 
@@ -162,8 +198,9 @@ int cellular_automata::setup_dimensions(int width) {
     }
 }
 
+
 /*  Function to set up cellular automata states: 
-    (Iterates thorugh cells in cellula automata, and assigns each cell within the cellular_matrix 
+    (Iterates through cells in cellular automata, and assigns each cell within the cellular_matrix 
     with a state based on state_probability)
 
     Parameters:
@@ -177,30 +214,46 @@ int cellular_automata::setup_dimensions(int width) {
         defined error codes.
 */
 int cellular_automata::setup_states(int num_states, vector<double> state_probabilities) {
-    if ((num_states -1) != (state_probabilities.size())){ // states not matched with probabilities
+
+//                              Error Checks
+// -----------------------------------------------------------------------------------------
+
+// 1.  Check if states have not matched with any probabilities
+    if ((num_states -1) != (state_probabilities.size()))
+    { 
         std::cout << "Error 2: Each State Must Have A Probability " << std::endl;
         return ERR_NUM_STATES;
     }
 
-    else if (cellular_matrix == nullptr) { // cellular grid not setup
+// 2.  Check if cellular grid has been setup
+    else if (cellular_matrix == nullptr) 
+    { 
         std::cout << "Error 3: Cellular Automata Not Setup " << std::endl; 
-
         return ERR_NO_SETUP; 
     }   
 
-    else {
+//                  Setup states
+//-------------------------------------------------------------------
+    else 
+    {
         num_states_ = num_states; // set num states
-        srand(time(NULL));
+        srand(time(NULL)); // seed the random number gernerator based on time 
 
-        setup_prob(state_probabilities);
+        setup_prob(state_probabilities);// structures state_probabilites vector to work with random
+                                        // numbers
         
-        for (int i = 0; i < height_; i++) { // iterating over grid rows
-            for (int j = 0; j < width_; j++) { // iterating over grid colums
-                double random_prob = rand_number();
-                int k = 0;
+// Iterate over each cell in grid and assign states based on random number generated 
+        for (int i = 0; i < height_; i++) // iterating over grid rows
+        { 
+            for (int j = 0; j < width_; j++) // iterating over grid colums
+            { 
+                double random_prob = rand_number(); // set random number
+                int k = 0; //start from 0 index in vector
 
-                while(random_prob > state_probabilities[k]) k++;
-                cellular_matrix[i][j].type = k;
+                while(random_prob > state_probabilities[k]) k++;// keep increasing k till random number generated 
+                                                                // is less than predefined probability range 
+
+                cellular_matrix[i][j].type = k; // set cell state 
                 cellular_matrix[i][j].steps_passed = 0;
             }
         }
@@ -208,17 +261,35 @@ int cellular_automata::setup_states(int num_states, vector<double> state_probabi
     }
 }
 
-int cellular_automata::setup_prob(vector<double> &state_probabilities){
-    for(int i = 1; i < num_states_; i++){
-        state_probabilities[i] += state_probabilities[i - 1];
-        if(state_probabilities[i] > 1){
+
+/*  Function to structure state_probabilities vector
+    (Sums probabilities and adds value of 1 to create range )
+
+    Parameters:
+    state_probabilities: vector<double> 
+        the probability of a state occuring
+
+    Returns:
+        defined error codes.
+*/
+int cellular_automata::setup_prob(vector<double> &state_probabilities)
+{
+    for(int i = 1; i < num_states_; i++)
+    {
+        state_probabilities[i] += state_probabilities[i - 1];   // summate the probabilities to create range for random
+                                                                // number
+        // Error check
+        if(state_probabilities[i] > 1)
+        {
             std::cout << "Error 4: Sum probabilities exceeds 1." << endl;
             return ERR_INC_PROBABILITY;
         }
     }
-    state_probabilities.push_back(1);
+
+    state_probabilities.push_back(1); // add 1 as the last value to create range between total sum of probabilites and 1
     return NO_ERROR;
 }
+
 
 int cellular_automata::setup_boundary(std::string boundary){
     boundary_ = boundary;

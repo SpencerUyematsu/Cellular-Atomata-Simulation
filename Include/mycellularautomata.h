@@ -11,6 +11,9 @@
 #include <climits>
 #include <limits.h>
 #include <stdexcept>
+#include "myrandom.h"
+
+
 #pragma once    // This ensures this file is included only once during
                 // compilation
 using namespace std;
