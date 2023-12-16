@@ -48,20 +48,13 @@ test_rules: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) test_rules test_rules.cpp \
 	-I$(INC_DIR) -I$(UINC_DIR) -L$(LIB_DIR) -lmycellularautomata \
 	-L$(ULIB_DIR) -lmyrandom
-# mv test_rules $(BIN_DIR)
+	mv test_rules $(BIN_DIR)
 
-test_all: $(INC_DIR)/mycellularautomata.h
-	$(CPP) $(CPPFLAGS) test_all test_all.cpp \
-	-I$(INC_DIR) -L$(LIB_DIR) -lmycellularautomata
-	./test_all
-	rm test_all
-
-sim: $(INC_DIR)/mycellularautomata.h
+test_simulation: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) test_simulation test_simulation.cpp \
 	-I$(INC_DIR) -I$(UINC_DIR) -L$(LIB_DIR) -lmycellularautomata \
 	-L$(ULIB_DIR) -lmyrandom
-	./test_simulation
-	rm test_simulation
+	mv test_simulation $(BIN_DIR)
 
 test_timed_sim: $(INC_DIR)/mycellularautomata.h
 	$(CPP) $(CPPFLAGS) test_timed_simulation test_timed_simulation.cpp \
