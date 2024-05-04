@@ -3,13 +3,13 @@
 ### University of California, Berkeley
 ### Chem 274B: Software Engineering Fundamentals for Molecular Sciences 
 
-### Creator:  Spencer Uyematsu, Michael Soto, Kofi Mireku
+### Authors:  Spencer Uyematsu, Michael Soto, Kofi Mireku
 ### Date Created: December, 2023
 
 This is the main directory for the CHEM274B Final Project repository
 
 ## LIST OF SUBDIRECTORIES IN THIS DIRECTORY:
-- Applications/ 
+- Applications/
 - Bin/ 
 - Lib/ 
 - Include/
