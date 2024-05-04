@@ -35,5 +35,4 @@ cleanall:
 	cd $(UTILS_DIR); make cleanall
 	cd $(SORC_DAT_DIR); make cleanall
 	cd $(TST_DIR); make cleanall
-	cd $(BIN_DIR); make cleanall
 	cd $(APP_BIN); make cleanall

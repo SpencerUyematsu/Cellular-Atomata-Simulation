@@ -30,7 +30,7 @@ fig, ax = plt.subplots()
 
 # show plot for every step
 def step(timestep):
-    sns.heatmap(state[timestep], cbar=None)
+    sns.heatmap(state[timestep], cbar=None, cmap='RdYlGn_r')
 
 # creates animation over all timesteps
 Cellular_Automata = mani.FuncAnimation(fig, step, frames= state.shape[0], repeat=False, interval = 200)

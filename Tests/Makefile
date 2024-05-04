@@ -65,4 +65,4 @@ test_timed_simulation: $(INC_DIR)/mycellularautomata.h
 all: $(EXECUTABLES)
 
 cleanall: 
-	cd $(BIN_DIR); rm $(EXECUTABLES)
+	cd $(BIN_DIR); rm test_*
